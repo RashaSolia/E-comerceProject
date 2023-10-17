@@ -1,0 +1,26 @@
+<form class="w-75 m-auto my-5" [formGroup]="payment" (ngSubmit)="onlinePayment(payment)"> 
+    <label for=""> details</label>
+    <input  type="text"  class="form-control my-2" formControlName="details"  [class.is-invalid]="payment.get('details')?.errors&&payment.get('details')?.touched" >
+
+    <div *ngIf="payment.get('details')?.errors&&payment.get('details')?.touched" class="alert alert-danger">
+        <p *ngIf="payment.get('details')?.getError('required')" > details is required </p>            
+        <p *ngIf="payment.get('details')?.getError('minlength')" > details min length is 3</p>
+
+    </div>
+    <label for=""> phone</label>
+    <input type="tel"  class="form-control my-2" formControlName="phone"  [class.is-invalid]="payment.get('phone')?.errors&&payment.get('phone')?.touched">
+    <div *ngIf="payment.get('phone')?.errors&&payment.get('phone')?.touched" class="alert alert-danger">
+        <p *ngIf="payment.get('phone')?.getError('required')" >phone is required </p> 
+        <p *ngIf="payment.get('phone')?.getError('pattern')" >invalid phone </p>            
+           
+            </div>
+    <label for=""> city</label>
+    <input type="text"  class="form-control my-2" formControlName="city"  [class.is-invalid]="payment.get('city')?.errors&&payment.get('city')?.touched">
+    <div *ngIf="payment.get('city')?.errors&&payment.get('city')?.touched" class="alert alert-danger">
+        <p *ngIf="payment.get('city')?.getError('required')" >city is required </p>            
+            </div>
+<button [disabled]="payment.invalid" type="submit" type="submit" class="btn btn-outline-success my-2 w-100"> 
+    <span *ngIf="isLoading"><i class=" fa-solid fa-spinner fa-spin"></i></span>
+
+    Pay Now </button>
+</form>

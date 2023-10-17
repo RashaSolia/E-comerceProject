@@ -1,0 +1,13 @@
+
+
+<div class="row my-5">
+    <h2  class="text-center p-5" style="color: #21471f;"> All <span class="text-main">Categories</span>   </h2>
+    <div *ngFor="let categorey of catArr;  " class="col-md-3 my-2">
+        <div class="col bg-light rounded border p-4 product"> 
+    <img [src]="categorey.image" alt="img " class="w-100  imgstyle">
+    <h4 class="text-center" >{{categorey.name}}</h4>
+        </div>
+       
+    </div>
+
+</div>

@@ -1,0 +1,76 @@
+<div >
+    <h2 class="p-5  fw-bolder">Register Form</h2>
+    <h2 class="alert alert-danger" *ngIf="errormassege.length>0">{{errormassege}}</h2>
+    <form [formGroup]="registerFrom" (ngSubmit)="signUp(registerFrom)">
+        <div class="m-3">
+        <label for="">name :</label>
+        <input 
+        [class.is-invalid]="registerFrom.get('name')?.errors&&registerFrom.get('name')?.touched"
+        [class.is-valid]="registerFrom.get('name')?.errors == null"
+        formControlName="name" type="text" class="form-control" />
+    <div *ngIf="registerFrom.get('name')?.errors&&registerFrom.get('name')?.touched" class="alert alert-danger">
+<p *ngIf="registerFrom.get('name')?.getError('required')" > required input</p>
+<p *ngIf="registerFrom.get('name')?.getError('maxlength')" >max length 10 </p>
+<p *ngIf="registerFrom.get('name')?.getError('minlength')" > min length 3</p>
+
+    </div>
+    </div>
+    <div class="m-3">
+        <label for="">email :</label>
+        <input   [class.is-invalid]="registerFrom.get('email')?.errors&&registerFrom.get('email')?.touched"
+        [class.is-valid]="registerFrom.get('email')?.errors == null"
+        type="email"  formControlName="email" class="form-control">
+        <div *ngIf="registerFrom.get('email')?.errors&&registerFrom.get('email')?.touched" class="alert alert-danger">
+            <p *ngIf="registerFrom.get('email')?.getError('required')" > required input</p>
+            <p *ngIf="registerFrom.get('email')?.getError('email')" >Enter availd email </p>            
+                </div>
+    </div>
+    <div class="m-3">
+        <label for="">password :</label>
+        <input   
+        [class.is-invalid]="registerFrom.get('password')?.errors&&registerFrom.get('password')?.touched"
+        [class.is-valid]="registerFrom.get('password')?.errors == null"
+         type="password" formControlName="password" class="form-control">
+        <div *ngIf="registerFrom.get('password')?.errors&&registerFrom.get('password')?.touched" class="alert alert-danger">
+            <p *ngIf="registerFrom.get('password')?.getError('required')" > required input</p>
+            <p *ngIf="registerFrom.get('password')?.getError('pattern')">must be
+             <br>   * Start with a letter (either uppercase or lowercase).
+             <br>       * Be between 6 and 9 characters in total.
+             <br>    * Can only contain letters (A-Z or a-z) and numbers (0-9)
+             </p>            
+                </div>
+    </div>
+ 
+    <div class="m-3">
+        <label for="">repassword :</label>
+        <input 
+        [class.is-invalid]="registerFrom.get('rePassword')?.errors&&registerFrom.get('rePassword')?.touched"
+        [class.is-valid]="registerFrom.get('rePassword')?.errors == null"
+        type="password" formControlName="rePassword" class="form-control">
+        <div *ngIf="registerFrom.get('rePassword')?.errors&&registerFrom.get('rePassword')?.touched" class="alert alert-danger">
+            <p *ngIf="registerFrom.get('rePassword')?.getError('required')" > required input</p>
+            <!-- <p *ngIf="registerFrom.get('rePassword')?.getError('pattern')" >Enter availd password </p>             -->
+            <p *ngIf="registerFrom.get('rePassword')?.getError('repasswordMatch')">repassword not match password</p>
+                </div>
+    </div> 
+   
+    <div class="m-3">
+        <label for="">phone :</label>
+        <input   [class.is-invalid]="registerFrom.get('phone')?.errors&&registerFrom.get('phone')?.touched"
+        [class.is-valid]="registerFrom.get('phone')?.errors == null"
+        formControlName="phone" type="tel" class="form-control" />
+        <div class="alert alert-danger"
+        *ngIf="registerFrom.get('phone')?.errors&&registerFrom.get('phone')?.touched">
+        <p *ngIf="registerFrom.get('phone')?.getError('required')">this required input</p>
+        <p *ngIf="registerFrom.get('phone')?.getError('pattern')">enter avalid number</p>
+    </div>
+    </div>
+   
+    <div class="d-flex justify-content-end">
+        <button [disabled]="registerFrom.invalid" type="submit" class="btn btn-outline-success text-black">
+            <span *ngIf="isLoading"><i class=" fa-solid fa-spinner fa-spin"></i></span>
+            register
+        </button>
+    </div>
+    </form>
+</div>

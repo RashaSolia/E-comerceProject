@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light p-3" >
+      <div class="container">
+        <a class="navbar-brand fw-bolder fs-3" ><span><i class="fa-solid fa-cart-arrow-down text-main" ></i></span> Fresh Cart</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavId">
+           <div class="links">
+            <ul *ngIf="islogin" class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="home" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="mycart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="brands">Brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="wishlist">wish list</a>
+                </li>
+
+                <a  class="nav-item" routerLink="mycart" >
+  <i class="fa-solid fs-4 fa-cart-shopping"> <span class="position-absolute  rounded-1 top-0 start-50 fs-6 border p-1 bg-success text-light fw-bold">{{num}}</span> </i>
+                 
+                  </a>
+            </ul>
+           </div>
+         <div class="icones">
+           
+           <i *ngIf="islogin"> <a (click)="logOut()" class="nav-link d-inline p-2"routerLink="">LogOut</a></i>
+           <i *ngIf="!islogin"> <a class="nav-link d-inline p-2"routerLink="signin">LogIn</a></i>
+           <i *ngIf="!islogin"> <a class="nav-link d-inline p-2"routerLink="signup">SignUp</a></i>
+
+        </div>
+        </div>
+  </div>
+</nav>
